@@ -1,0 +1,77 @@
+@model TafadzwaMovies.Models.Movie
+
+@{
+    ViewData["Title"] = "Movie Details";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="search-card">
+                <h2 style="color: #1a237e; margin-bottom: 30px; font-weight: 700;">
+                    <i class="fas fa-film"></i> Movie Details
+                </h2>
+
+                <div class="row mb-4">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label" style="color: #666; font-size: 12px; text-transform: uppercase;">Movie Title</label>
+                        <h4 style="color: #ff6f00; font-weight: 700; margin: 0;">@Model.Title</h4>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label" style="color: #666; font-size: 12px; text-transform: uppercase;">Release Date</label>
+                        <h5 style="margin: 0;">
+                            <span class="badge bg-secondary">@Model.ReleaseDate.ToString("MMMM d, yyyy")</span>
+                        </h5>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label" style="color: #666; font-size: 12px; text-transform: uppercase;">Genre</label>
+                        <p style="color: #ff6f00; font-weight: 600; font-size: 16px; margin: 0;">
+                            <i class="fas fa-theater-masks"></i> @Model.Genre
+                        </p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label" style="color: #666; font-size: 12px; text-transform: uppercase;">Price</label>
+                        <p style="color: #4caf50; font-weight: 700; font-size: 20px; margin: 0;">
+                            $@Model.Price.ToString("F2")
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-12 mb-3">
+                        <label class="form-label" style="color: #666; font-size: 12px; text-transform: uppercase;">Rating</label>
+                        <p style="margin: 0;">
+                            @if (!string.IsNullOrEmpty(Model.Rating))
+                            {
+                                <span class="badge bg-info" style="font-size: 14px; padding: 10px 14px;">
+                                    ⭐ @Model.Rating
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="text-muted">Not rated</span>
+                            }
+                        </p>
+                    </div>
+                </div>
+
+                <hr style="border-color: #e0e0e0; margin: 30px 0;">
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Back to Movies
+                    </a>
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">
+                        <i class="fas fa-trash"></i> Delete
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
